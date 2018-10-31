@@ -24,10 +24,31 @@ class Guide
 		introduction
 		#action loop
 		#user action ( list, find , add , quit )
+		loop do
+			print">"
+			user_response = gets.chomp
+			result = do_action(user_response)
+			break if result == :quit
+		end
 		#do action 
 		#repeat until user quits 
 		conclusion
 	end 
+
+	def do_action(action)
+		case action 
+		when "list"
+			puts "listing"
+		when "find"
+			puts "finding"
+		when "add"
+			puts 'adding'
+		when "quit"
+			return :quit
+		else
+			puts "\n i don;t undertand that command"
+		end
+	end
 
 	def introduction 
 		puts "\n\n<<< Welcome to the Food Finder >>>\n\n"
