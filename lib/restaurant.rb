@@ -1,21 +1,22 @@
 class Restaurant
 
   @@filepath = nil
-
-  def  self.filepath=(path=nil)
-      # now we create  path so it can acccesss form other 
-      @@filepath = File.join(APP_ROOT, path)
+  def self.filepath=(path=nil)
+    @@filepath = File.join(APP_ROOT, path)
   end
-  # def self.file_exists?
-  #   # class should know if the restaurant file exists
-  #   if @@filepath && File.exists?(@@filepath)
-  #       return true
-  #   else 
-  #       return false
-  #   end 
-  # end
-  # this one check if the file 
-def self.file_usable?
+  
+  attr_accessor :name, :cuisine, :price
+  
+  def self.file_exists?
+    # class should know if the restaurant file exists
+    if @@filepath && File.exists?(@@filepath)
+      return true
+    else
+      return false
+    end
+  end
+  
+  def self.file_usable?
     return false unless @@filepath
     return false unless File.exists?(@@filepath)
     return false unless File.readable?(@@filepath)
@@ -25,7 +26,7 @@ def self.file_usable?
   
   def self.create_file
     # create the restaurant file
-    File.open(@@filepath, 'w') unless file_usable?
+    File.open(@@filepath, 'w') unless file_exists?
     return file_usable?
   end
   
@@ -34,4 +35,12 @@ def self.file_usable?
     # return instances of restaurant
   end
 
+  def save
+    return false unless Restaurant.file_usable?
+    File.open(@@filepath, 'a') do |file|
+      file.puts "#{[@name, @cuisine, @price].join("\t")}\n"
+    end
+    return true
+  end
+  
 end
