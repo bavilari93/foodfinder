@@ -2,4 +2,4 @@
 Ruby app
 Practice loops , functions and ruby programing logic to create a simple restaurant finder that can be access through the terminal.
 
-The Crud is doone with a text document.
+The Crud is doone with a text document wich is mainly accesed trhough commands from the terminal 
