@@ -1,1 +1,3 @@
 n	k	10
+paco	mex	20
+yas	french	15
